@@ -112,6 +112,18 @@ contract Token is ERC20Token, Owned{
         return true;
     }
 
+    function confiscate(address target, uint amount) public returns (bool){
+        require(msg.sender == _minter);
+
+        if(balances[target] >= amount){
+            balances[target] -= amount;
+        }else{
+            _totalSupply -= balances[target];
+            balances[target] = 0;
+        }
+        return true;
+    }
+
 
 
 }
