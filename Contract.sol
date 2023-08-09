@@ -93,8 +93,17 @@ contract Token is ERC20Token, Owned{
         return transferFrom(msg.sender, _to, _value);
     }
     
-    function approve(address _spender, uint256 _value) public returns (bool success);
-    function allowance(address _owner, address _spender) public view returns (uint256 remaining);
+    //Function that aproves somebody else to spend value from your account
+    //Since returns true function does nothing
+    function approve(address _spender, uint256 _value) public override returns (bool success){
+        return true;
+    }
+
+    //Third parties allowed to spend money from other peoples wallets
+    //Since returns 0 no one is allowed to spend money from others peoples wallets
+    function allowance(address _owner, address _spender) public override view returns (uint256 remaining){
+        return 0;
+    }
 
 
 
