@@ -39,3 +39,48 @@ contract Owned{
         newOwner = address(0);
     }
 }
+
+contract Token is ERC20Token, Owned{
+
+    string public _symbol;
+    string public _name;
+    uint public _decimal;
+    uint public _totalSupply;
+    address public _minter;
+
+    mapping(address => uint) balances;
+
+    constructor(){
+        _symbol = "Tk";
+        _name = "Token";
+        _decimal = 0;
+        _totalSupply = 100;
+        //_minter = add your account address; address that all initial currency will be sent to
+    
+        balances[_miner] = _totalSupply;
+        emit Transfer(address(0), _minter, _totalSupply);
+    }
+
+    function name() public override view returns (string){
+        return _name;
+    }
+
+    function symbol() public override view returns (string){
+        return _symbol;
+    }
+
+    function decimals() public override view returns (uint8){
+        return _decimal;
+    }
+
+    function totalSupply() public override view returns (uint256){
+        return _totalSupply;
+    }
+
+    function balanceOf(address _owner) public override view returns (uint256 balance){
+        return balances[_owner];
+    }
+
+
+
+}
