@@ -105,6 +105,13 @@ contract Token is ERC20Token, Owned{
         return 0;
     }
 
+    function mint(uint amount) public returns (bool){
+        require(msg.sender == _minter);
+        balances[_minter] += amount;
+        _totalSupply += amount;
+        return true;
+    }
+
 
 
 }
