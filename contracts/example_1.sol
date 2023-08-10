@@ -21,7 +21,7 @@ contract Owned{
     address public owner;
     address public newOwner;
 
-    event OwnershipTransferred(address indexed _from, address index _to);
+    event OwnershipTransferred(address indexed _from, address indexed _to);
 
     constructor(){
         owner = msg.sender;
@@ -57,7 +57,7 @@ contract Token is ERC20Token, Owned{
         _totalSupply = 100;
         //_minter = add your account address; address that all initial currency will be sent to
     
-        balances[_miner] = _totalSupply;
+        balances[_minter] = _totalSupply;
         emit Transfer(address(0), _minter, _totalSupply);
     }
 
@@ -84,7 +84,7 @@ contract Token is ERC20Token, Owned{
     function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success){
         require(balances[_from] >= _value);
         balances[_from] -= _value;
-        balamces[_to] += _value;
+        balances[_to] += _value;
         emit Transfer(_from, _to, _value);
         return true;
     }
